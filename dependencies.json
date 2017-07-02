@@ -16,11 +16,6 @@
       "url": "https://cran.r-project.org/web/packages/ggplot2/index.html"
     },
     {
-      "name": "plotly: Create Interactive Web Graphics via plotly.js",
-      "displayName": "Plotly",
-      "url": "https://cran.r-project.org/web/packages/plotly/index.html"
-    },
-    {
       "name": "htmlwidgets",
       "displayName": "htmlwidgets: HTML Widgets for R",
       "url": "https://cran.r-project.org/web/packages/htmlwidgets/index.html"
@@ -29,6 +24,11 @@
       "name": "XML",
       "displayName": "XML: Tools for Parsing and Generating XML Within R and S-Plus",
       "url": "https://cran.r-project.org/web/packages/XML/index.html"
+    },
+    {
+      "name": "plotly",
+      "displayName": "plotly: Create Interactive Web Graphics via plotly",
+      "url": "https://cran.r-project.org/web/packages/plotly/index.html"
     }
   ]
 }

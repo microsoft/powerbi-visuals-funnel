@@ -189,6 +189,7 @@ pbiWarning = ""
 
 gpd = goodPlotDimension()
 
+
 if(validToPlot && !gpd) # too small canvas
 {
   validToPlot = FALSE
@@ -227,6 +228,17 @@ if(validToPlot && (sum(validData) < minPoints)) # not enough data samples
   pbiWarning2 = "for funnel plot"
   pbiWarning2 = cutStr2Show(pbiWarning2, strCex = sizeWarn/6, partAvailable = 0.9)
   pbiWarning<-paste(pbiWarning1, "<br>", pbiWarning2, sep="")
+}
+
+if(validToPlot ) # check packages
+{
+  si = sessionInfo()
+  namesPackages =  c(names(si$otherPkgs), names(si$basePkgs),names(si$loadedOnly))
+  checkPackages = c("XML","plotly","ggplot2","htmlwidgets","scales")
+  flagAllPackages = prod(checkPackages %in% namesPackages)
+
+  if(!flagAllPackages) 
+    warning("*** Some of the packages are missing ! ***")
 }
 
 ############# Main code #####################
