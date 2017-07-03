@@ -1,0 +1,349 @@
+{
+  "dataRoles": [
+    {
+      "displayName": "Population",
+      "description": "Numeric variable (positive integer)",
+      "kind": "GroupingOrMeasure",
+      "name": "population"
+    },
+    {
+      "displayName": "Occurrence",
+      "description": "Numeric variable (nonnegative integer). Must be smaller than Population",
+      "kind": "GroupingOrMeasure",
+      "name": "occurrence"
+    },
+    {
+      "displayName": "Tooltips",
+      "description": "Fields to be used as hover tooltips",
+      "kind": "Grouping",
+      "name": "tooltips"
+    }
+  ],
+  "dataViewMappings": [
+    {
+      "conditions": [
+        {
+          "population": {
+            "max": 1
+          },
+          "occurrence": {
+            "max": 1
+          },
+          "tooltips": {
+            "max": 7
+          }
+        }
+      ],
+      "scriptResult": {
+        "dataInput": {
+          "table": {
+            "rows": {
+              "select": [
+                {
+                  "for": {
+                    "in": "population"
+                  }
+                },
+                {
+                  "for": {
+                    "in": "occurrence"
+                  }
+                },
+                {
+                  "for": {
+                    "in": "tooltips"
+                  }
+                }
+              ],
+              "dataReductionAlgorithm": {
+                "top": {}
+              }
+            }
+          }
+        },
+        "script": {
+          "scriptProviderDefault": "R",
+          "scriptOutputType": "html",
+          "source": {
+            "objectName": "rcv_script",
+            "propertyName": "source"
+          },
+          "provider": {
+            "objectName": "rcv_script",
+            "propertyName": "provider"
+          }
+        }
+      }
+    }
+  ],
+  "objects": {
+    "rcv_script": {
+      "properties": {
+        "provider": {
+          "type": {
+            "text": true
+          }
+        },
+        "source": {
+          "type": {
+            "scripting": {
+              "source": true
+            }
+          }
+        }
+      }
+    },
+    "settings_funnel_params": {
+      "displayName": " Settings",
+      "description": "Funnel plot settings",
+      "properties": {
+        "lineColor": {
+          "displayName": "Baseline color",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+         "conf1": {
+          "displayName": "Confidence level #1",
+          "description": "Confidence level #1",
+          "type": {
+            "enumeration": [
+              {
+                "displayName": "0.75",
+                "value": "0.75"
+              },
+              {
+                "displayName": "0.85",
+                "value": "0.85"
+              },
+              {
+                "displayName": "0.9",
+                "value": "0.9"
+              },
+              {
+                "displayName": "0.95",
+                "value": "0.95"
+              },
+              {
+                "displayName": "0.975",
+                "value": "0.975"
+              },
+              {
+                "displayName": "0.99",
+                "value": "0.99"
+              },
+              {
+                "displayName": "0.995",
+                "value": "0.995"
+              },
+              {
+                "displayName": "0.999",
+                "value": "0.999"
+              }
+            ]
+          }
+        },
+        "conf2": {
+          "displayName": "Confidence level #2",
+          "description": "Confidence level #2",
+          "type": {
+            "enumeration": [
+              {
+                "displayName": "0.75",
+                "value": "0.75"
+              },
+              {
+                "displayName": "0.85",
+                "value": "0.85"
+              },
+              {
+                "displayName": "0.9",
+                "value": "0.9"
+              },
+              {
+                "displayName": "0.95",
+                "value": "0.95"
+              },
+              {
+                "displayName": "0.975",
+                "value": "0.975"
+              },
+              {
+                "displayName": "0.99",
+                "value": "0.99"
+              },
+              {
+                "displayName": "0.995",
+                "value": "0.995"
+              },
+              {
+                "displayName": "0.999",
+                "value": "0.999"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "settings_scatter_params": {
+      "displayName": "Scatter",
+       "description": "Scatter settings",
+      "properties": {
+        "pointColor": {
+          "displayName": "Point color",
+          "description": "Point color",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "weight": {
+          "displayName": "Point size",
+          "type": {
+            "numeric": true
+          }
+        },
+        "percentile": {
+          "displayName": "Opacity",
+          "description": "Point Opacity",
+          "type": {
+            "numeric": true
+          }
+        },
+        "sparsify": {
+          "displayName": "Sparsify",
+          "description": "Sparsify dense regions of the scatter plot. Recommended for overcoming overdraw and memory issues. ",
+          "type": {
+            "bool": true
+          }
+        }
+      }
+    },
+    "settings_axes_params": {
+      "displayName": "Axes",
+      "description": "Axes and labels settings",
+      "properties": {
+        "colLabel": {
+          "displayName": "Labels color",
+          "description": "Labels color",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "textSize": {
+          "displayName": "Labels size",
+          "type": {
+            "numeric": true
+          }
+        },
+        "axisXisPercentage": {
+          "displayName": "Percentage",
+          "description": "Show percentage rather than ratio",
+          "type": {
+            "bool": true
+          }
+        },
+        "scaleXformat": {
+          "displayName": "Scale X format",
+          "description": "Scale X format",
+          "type": {
+            "enumeration": [
+              {
+                "displayName": "none",
+                "value": "none"
+              },
+              {
+                "displayName": "comma",
+                "value": "comma"
+              },
+              {
+                "displayName": "scientific",
+                "value": "scientific"
+              },
+              {
+                "displayName": "dollar",
+                "value": "dollar"
+              }
+            ]
+          }
+        },
+        "scaleYformat": {
+          "displayName": "Scale Y format",
+          "description": "Scale Y format",
+          "type": {
+            "enumeration": [
+              {
+                "displayName": "none",
+                "value": "none"
+              },
+              {
+                "displayName": "comma",
+                "value": "comma"
+              },
+              {
+                "displayName": "scientific",
+                "value": "scientific"
+              }
+            ]
+          }
+        },
+        "sizeTicks": {
+          "displayName": "Size ticks",
+          "description": "Size ticks",
+          "type": {
+            "enumeration": [
+              {
+                "displayName": "4",
+                "value": "4"
+              },
+              {
+                "displayName": "6",
+                "value": "6"
+              },
+              {
+                "displayName": "8",
+                "value": "8"
+              },
+              {
+                "displayName": "10",
+                "value": "10"
+              },
+              {
+                "displayName": "12",
+                "value": "12"
+              },
+              {
+                "displayName": "14",
+                "value": "14"
+              },
+              {
+                "displayName": "16",
+                "value": "16"
+              },
+              {
+                "displayName": "18",
+                "value": "18"
+              },
+              {
+                "displayName": "20",
+                "value": "20"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "suppressDefaultTitle": true
+}
