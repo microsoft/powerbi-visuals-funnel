@@ -58,7 +58,7 @@ typings/
 .env
 
 # temp 
-.tmp
+.tmp/
 
 # api
-.api
+.api/
