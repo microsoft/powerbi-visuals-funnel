@@ -1,0 +1,24 @@
+{
+  "visual": {
+     "name": "powerBI-Visuals-funnel",
+    "displayName": "Funnel plot",
+    "guid": "RHTML_FUNNEL_978302916642",
+    "visualClassName": "Visual",
+    "version": "1.0.0",
+    "description": "",
+    "supportUrl": "http://community.powerbi.com/",
+    "gitHubUrl": "https://github.com/Microsoft/powerbi-visuals-funnel"
+  },
+  "apiVersion": "1.6.0",
+  "author": {
+    "name": "Microsoft",
+    "email": "pbicvsupport@microsoft.com"
+  },
+  "assets": {
+    "icon": "assets/icon.png"
+  },
+  "externalJS": [],
+  "style": "style/visual.less",
+  "capabilities": "capabilities.json",
+  "dependencies": "dependencies.json"
+}

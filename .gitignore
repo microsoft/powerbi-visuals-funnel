@@ -1,3 +1,8 @@
+ .tmp
+.api
+dist
+*.log
+
 # Logs
 logs
 *.log
@@ -56,4 +61,17 @@ typings/
 
 # dotenv environment variables file
 .env
-
+.tmp/drop/pbiviz.json
+.tmp/drop/status
+.tmp/drop/visual.css
+.tmp/precompile/visualPlugin.ts
+.tmp/precompile/src/visual.ts
+.tmp/precompile/src/htmlInjectionUtility.ts
+.tmp/drop/visual.css.map
+.tmp/drop/visual.js
+.tmp/drop/visual.js.map
+.tmp/drop/visual.prod.css
+.tmp/precompile/src/objectEnumerationUtility.ts
+.tmp/drop/visual.prod.js
+.tmp/*
+.api/*
