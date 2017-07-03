@@ -1,4 +1,5 @@
-#utils.r file with small general functions 
+#utils.r 
+#file with small util methods 
 
 libraryRequireInstall = function(packageName, ...)
 {
@@ -6,7 +7,7 @@ libraryRequireInstall = function(packageName, ...)
     warning(paste("*** The package: '", packageName, "' was not installed ***", sep=""))
 }
 
-# Ecamone text string 
+# Postprocess text string (usually to show as labels)
 # if very very long abbreviate
 # if looooooong convert to lo...
 # if shorter than maxChar remove 
