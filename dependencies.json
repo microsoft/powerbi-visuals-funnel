@@ -29,6 +29,11 @@
       "name": "plotly",
       "displayName": "plotly: Create Interactive Web Graphics via plotly",
       "url": "https://cran.r-project.org/web/packages/plotly/index.html"
+    },
+    {
+      "name": "caTools",
+      "displayName": "caTools: moving window statistics, GIF, Base64, ROC AUC, etc",
+      "url": "https://cran.r-project.org/web/packages/caTools/index.html"
     }
   ]
 }

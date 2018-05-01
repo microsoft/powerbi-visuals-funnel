@@ -29,27 +29,28 @@ module powerbi.extensibility.visual {
     import DataViewObjectsParser = powerbi.extensibility.utils.dataview.DataViewObjectsParser;
 
    export class VisualSettings extends DataViewObjectsParser {
-      public settings_funnel_params: settings_funnel_params = new settings_funnel_params();
-      public settings_scatter_params: settings_scatter_params = new settings_scatter_params();
-      public settings_axes_params: settings_axes_params = new settings_axes_params();
+      public settings_funnel_params: SettingsFunnelParams = new SettingsFunnelParams();
+      public settings_scatter_params: SettingsScatterParams = new SettingsScatterParams();
+      public settings_axes_params: SettingsAxesParams = new SettingsAxesParams();
+      public settings_export_params: SettingsExportParams = new SettingsExportParams();
       
       }
 
  
-    export class settings_funnel_params {
+    export class SettingsFunnelParams {
       public lineColor: string = "blue";   
       public conf1: string = "0.95";
       public conf2: string = "0.99";
     }
 
-    export class settings_scatter_params {
+    export class SettingsScatterParams {
       public pointColor: string = "orange";   
       public weight: number = 10;
       public percentile: number = 40;
       public sparsify: boolean = true;
     }
 
-    export class settings_axes_params {
+    export class SettingsAxesParams {
       public colLabel: string = "gray";   
       public textSize: number = 12;
       public axisXisPercentage: boolean = true;
@@ -57,5 +58,9 @@ module powerbi.extensibility.visual {
       public scaleYformat: string = "none";
       public sizeTicks: string = "6";  
     }
-
+    export class SettingsExportParams {
+      public show: boolean = false;
+      public limitExportSize: string = "10000";
+      public method: string = "copy";
+    }
 }
