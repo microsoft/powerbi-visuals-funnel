@@ -369,8 +369,6 @@ if(validToPlot)
     exportDF$ulconf2 <- (p.fem + zUp * sqrt((p.fem*(1-p.fem)) / (countValue)))*mult
   }
   
-  
-  
   yAxis = p*mult
   p.fem = p.fem*mult
   
