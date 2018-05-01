@@ -2,7 +2,7 @@
   "visual": {
    "name": "powerBI-Visuals-funnel",
     "displayName": "Funnel plot",
-    "guid": "RHTML_FUNNEL_978302916642_WORK",
+    "guid": "RHTML_FUNNEL_978302916642",
     "visualClassName": "Visual",
     "version": "1.0.1",
     "description": "Find outliers in your data, using a funnel plot",
