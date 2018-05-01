@@ -9,7 +9,7 @@
     "supportUrl": "https://aka.ms/customvisualscommunity",
     "gitHubUrl": "https://github.com/Microsoft/powerbi-visuals-funnel"
   },
-  "apiVersion": "1.6.0",
+  "apiVersion": "1.11.0",
   "author": {
     "name": "Microsoft",
     "email": "pbicvsupport@microsoft.com"
