@@ -75,3 +75,4 @@ typings/
 .tmp/drop/visual.prod.js
 .tmp/*
 .api/*
+assets/sample_test.pbix

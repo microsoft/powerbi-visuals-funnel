@@ -1,4 +1,4 @@
-############### Flattening HTML functions ###############
+############### Utility functions ###############
 libraryRequireInstall = function(packageName, ...)
 {
   if(!require(packageName, character.only = TRUE)) 
@@ -116,4 +116,3 @@ FindSrcReplacement <- function(str)
   return(str)
 }
 #################################################
-

@@ -19,7 +19,7 @@
       "name": "tooltips"
     }
   ],
-  "dataViewMappings": [
+   "dataViewMappings": [
     {
       "conditions": [
         {
@@ -107,7 +107,7 @@
             }
           }
         },
-        "conf1": {
+         "conf1": {
           "displayName": "Confidence level #1",
           "description": "Confidence level #1",
           "type": {
@@ -191,7 +191,7 @@
     },
     "settings_scatter_params": {
       "displayName": "Scatter",
-      "description": "Scatter settings",
+       "description": "Scatter settings",
       "properties": {
         "pointColor": {
           "displayName": "Point color",
