@@ -14,17 +14,6 @@
 # http://stats.stackexchange.com/questions/5195/how-to-draw-funnel-plot-using-ggplot2-in-r/5210#5210
 
 
-#DEBUG in RStudio
-# fileRda = "C:/Users/boefraty/projects/PBI/R/tempData.Rda"
-# if(file.exists(dirname(fileRda)))
-# {
-#   if(Sys.getenv("RSTUDIO")!="")
-#     load(file= fileRda)
-#   else
-#     save(list = ls(all.names = TRUE), file=fileRda)
-# }
-
-
 ############ User Parameters #########
 # Set of parameters from GUI
 
@@ -111,6 +100,24 @@ colLabel = "gray"
 if(exists("settings_axes_params_colLabel")){
   colLabel = settings_axes_params_colLabel
 }
+##PBI_PARAM: export out data to HTML?
+#Type:logical, Default:FALSE, Range:NA, PossibleValues:NA, Remarks: NA
+keepOutData = FALSE
+if(exists("settings_export_params_show"))
+  keepOutData = settings_export_params_show 
+
+##PBI_PARAM: method of export interface
+#Type: string , Default:"copy",  Range:NA, PossibleValues:"copy", "download",  Remarks: NA
+exportMethod = "copy"
+if(exists("settings_export_params_method"))
+  exportMethod = settings_export_params_method 
+
+##PBI_PARAM: limit the out table exported
+#Type: string , Default:1000,  Range:NA, PossibleValues:"1000", "10000", Inf,  Remarks: NA
+limitExportSize = 1000
+if(exists("settings_export_params_limitExportSize"))
+  limitExportSize = as.numeric(settings_export_params_limitExportSize)
+
 ###############Library Declarations###############
 
 source('./r_files/flatten_HTML.r')
@@ -119,6 +126,7 @@ source('./r_files/utils.r')
 libraryRequireInstall("ggplot2")
 libraryRequireInstall("plotly")
 libraryRequireInstall("scales")
+libraryRequireInstall("caTools")
 
 
 ###############Internal parameters definitions#################
@@ -178,6 +186,64 @@ if(limsA[1] < 0 && isPositive) # don't include region far away from 0
 }
 return(limsA)
 }
+ConvertDF64encoding = function (df, withoutEncoding = FALSE)
+{
+  header_row <- paste(names(df), collapse=", ")
+  tab <- apply(df, 1, function(x)paste(x, collapse=", "))
+  
+  if(withoutEncoding){
+    text <- paste(c(header_row, tab), collapse="\n")
+    x <- text
+  }
+  else
+  {
+    text <- paste(c(header_row, tab), collapse="\n")
+    x <- caTools::base64encode(text)
+  }
+  return(x)
+}
+
+
+KeepOutDataInHTML = function(df, htmlFile = 'out.html', exportMethod = "copy", limitExportSize = 1000)
+{
+  if(nrow(df)>limitExportSize)
+    df = df[1:limitExportSize,]
+  
+  outDataString64 = ConvertDF64encoding(df)
+  
+  linkElem = '\n<a href=""  download="data.csv"  style="position: absolute; top:0px; left: 0px; z-index: 20000;" id = "mydataURL">export</a>\n'
+  updateLinkElem = paste('<script>\n link_element = document.getElementById("mydataURL");link_element.href = outDataString64href;', '\n</script> ', sep =' ')
+  var64 = paste('<script> outDataString64 ="', outDataString64, '"; </script>', sep ="")
+  var64href = paste('<script> outDataString64href ="data:;base64,', outDataString64, '"; </script>', sep ="")
+  
+  buttonElem = '<button style="position: absolute; top:0px; left: 0px; z-index: 20000;"  onclick="myFunctionCopy(1)">copy to clipboard</button>'
+  funcScript = '<script> 
+  function myFunctionCopy(is64) 
+  {
+  const el = document.createElement("textarea");
+  if(is64)
+  {
+  el.value = atob(outDataString64);
+  }
+  else
+  {
+  el.value = outDataStringPlane;
+  }
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);};	
+  </script>'
+  
+  if(exportMethod == "copy")
+    endOfBody = paste(var64,funcScript, buttonElem,'\n</body>',sep ="")
+  else#"download"
+    endOfBody = paste(linkElem,var64, var64href,updateLinkElem,'\n</body>',sep ="")
+  
+  ReadFullFileReplaceString('out.html', 'out.html', '</body>', endOfBody)
+  
+}
+
 ############# Input validation & initializations ############# 
 
 if(conf2 < conf1)# swap
@@ -282,6 +348,16 @@ if(validToPlot)
   number.llconf2 <- (p.fem - zUp * sqrt((p.fem*(1-p.fem)) / (number.seq)))*mult
   number.ulconf2 <- (p.fem + zUp * sqrt((p.fem*(1-p.fem)) / (number.seq)))*mult
   
+  if(keepOutData)
+  {
+    exportDF = dataset
+    exportDF$p = p * mult
+    exportDF$llconf1 <- (p.fem - zLow * sqrt((p.fem*(1-p.fem)) / (countValue)))*mult
+    exportDF$ulconf1 <- (p.fem + zLow * sqrt((p.fem*(1-p.fem)) / (countValue)))*mult
+    exportDF$llconf2 <- (p.fem - zUp * sqrt((p.fem*(1-p.fem)) / (countValue)))*mult
+    exportDF$ulconf2 <- (p.fem + zUp * sqrt((p.fem*(1-p.fem)) / (countValue)))*mult
+  }
+  
   yAxis = p*mult
   p.fem = p.fem*mult
   
@@ -375,9 +451,11 @@ if(validToPlot)
 }
 
 internalSaveWidget(p, 'out.html')
+# resolve bug in plotly (margin of 40 px)
+ReadFullFileReplaceString('out.html', 'out.html', ',"padding":40,', ',"padding":0,')
+
+if(keepOutData) 
+  KeepOutDataInHTML(df = exportDF, htmlFile = 'out.html', exportMethod = exportMethod, limitExportSize = limitExportSize)
 
 ####################################################
 
-#DEBUG in RStudio
-# if(Sys.getenv("RSTUDIO")!="")
-#   print(p)

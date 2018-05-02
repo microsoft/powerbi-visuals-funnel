@@ -75,3 +75,11 @@ typings/
 .tmp/drop/visual.prod.js
 .tmp/*
 .api/*
+assets/sample_test.pbix
+out.html
+out.html/*
+out.html_files
+out.html_files/*
+out.html*
+.Rhistory
+.Rhistory

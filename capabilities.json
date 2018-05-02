@@ -19,7 +19,7 @@
       "name": "tooltips"
     }
   ],
-  "dataViewMappings": [
+   "dataViewMappings": [
     {
       "conditions": [
         {
@@ -107,7 +107,7 @@
             }
           }
         },
-        "conf1": {
+         "conf1": {
           "displayName": "Confidence level #1",
           "description": "Confidence level #1",
           "type": {
@@ -191,7 +191,7 @@
     },
     "settings_scatter_params": {
       "displayName": "Scatter",
-      "description": "Scatter settings",
+       "description": "Scatter settings",
       "properties": {
         "pointColor": {
           "displayName": "Point color",
@@ -343,7 +343,56 @@
           }
         }
       }
-    }
+    },
+    "settings_export_params": {
+      "displayName": "Export data",
+      "description": "Export results",
+      "properties": {
+        "show": {
+          "type": {
+            "bool": true
+          }
+        },
+        "limitExportSize": {
+          "displayName": "Maximum exported rows",
+          "description": "Limit number of rows",
+          "type": {
+            "enumeration": [{
+                "displayName": "1000",
+                "value": "1000"
+              },
+              {
+                "displayName": "10000",
+                "value": "10000"
+              },
+              {
+                "displayName": "50000",
+                "value": "50000"
+              },
+              {
+                "displayName": "unlimited",
+                "value": "100000"
+              }
+            ]
+          }
+        },
+        "method": {
+          "displayName": "Method",
+          "description": "Method",
+          "type": {
+            "enumeration": [{
+                "displayName": "copy to clipboard",
+                "value": "copy"
+              },
+              {
+                "displayName": "download (only service)",
+                "value": "download"
+              }
+            ]
+          }
+        }
+      }
+    } 
   },
   "suppressDefaultTitle": true
 }
