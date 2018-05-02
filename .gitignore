@@ -81,3 +81,5 @@ out.html/*
 out.html_files
 out.html_files/*
 out.html*
+.Rhistory
+.Rhistory

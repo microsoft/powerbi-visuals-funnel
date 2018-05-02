@@ -14,17 +14,6 @@
 # http://stats.stackexchange.com/questions/5195/how-to-draw-funnel-plot-using-ggplot2-in-r/5210#5210
 
 
-#DEBUG in RStudio
-fileRda = "C:/Users/boefraty/projects/PBI/R/tempData.Rda"
-if(file.exists(dirname(fileRda)))
-{
-  if(Sys.getenv("RSTUDIO")!="")
-    load(file= fileRda)
-  else
-    save(list = ls(all.names = TRUE), file=fileRda)
-}
-
-
 ############ User Parameters #########
 # Set of parameters from GUI
 
@@ -465,32 +454,8 @@ internalSaveWidget(p, 'out.html')
 # resolve bug in plotly (margin of 40 px)
 ReadFullFileReplaceString('out.html', 'out.html', ',"padding":40,', ',"padding":0,')
 
-if(keepOutData)
-{
-  # padNA1 = rep(NA,length(x_full))
-  # padNA2 = rep(NA,length(f_full))
-  # if(!exists("lower1"))
-  #   lower1 = lower2 = upper1 = upper2 = padNA2;
-  # 
-  # 
-  # lower1 = c(padNA1,lower1)
-  # lower2 = c(padNA1,lower2)
-  # upper1 = c(padNA1,upper1)
-  # upper2 = c(padNA1,upper2)
-  # 
-  # exportDF = data.frame(Date = as.character(c(x_full,f_full)),Value = c(y1,y2),
-  #                       lower1 = lower1,
-  #                       lower2 = lower2,
-  #                       upper1 = upper1,
-  #                       upper2 = upper2)
-  # colnames(exportDF)[c(1,2)] = c(labTime,labValue)
-  
+if(keepOutData) 
   KeepOutDataInHTML(df = exportDF, htmlFile = 'out.html', exportMethod = exportMethod, limitExportSize = limitExportSize)
-}
-
 
 ####################################################
 
-#DEBUG in RStudio
-if(Sys.getenv("RSTUDIO")!="")
-  print(p)
