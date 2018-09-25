@@ -15,6 +15,6 @@ Here is how it works:
 
 
 R package dependencies (which are auto-installed): scales, reshape, ggplot2, plotly,  htmlwidgets, XML
-Supports R versions: R 3.4.x, R 3.3.3, R 3.3.2, MRO 3.2.2 
+Supports R versions: R 3.5.x, R 3.4.x 
 
 This is an open source visual. Get the code from GitHub: https://github.com/Microsoft/powerbi-visuals-funnel
