@@ -1,6 +1,6 @@
 {
   "name": "powerbi-visuals-funnel-plot",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "scripts": {
     "postinstall": "pbiviz update 1.11.0",
     "pbiviz": "pbiviz",

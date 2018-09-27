@@ -342,7 +342,7 @@ if(validToPlot)
     entryWordLabelY = "Percentage of "
   }
   
-  number.seq <- seq(min(countValue), max(countValue), 1000)
+  number.seq <- seq(from = min(countValue), to = max(countValue), length.out= 1000)
   number.llconf1 <- (p.fem - zLow * sqrt((p.fem*(1-p.fem)) / (number.seq)))*mult
   number.ulconf1 <- (p.fem + zLow * sqrt((p.fem*(1-p.fem)) / (number.seq)))*mult
   number.llconf2 <- (p.fem - zUp * sqrt((p.fem*(1-p.fem)) / (number.seq)))*mult
